@@ -1,0 +1,12 @@
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/repository/PollRepository.java
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/domain/Option.java
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/domain/Poll.java
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/domain/Vote.java
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/controller/PollController.java
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/repository/OptionRepository.java
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/dto/OptionCount.java
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/dto/VoteResult.java
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/controller/VoteController.java
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/QuickPollApplication.java
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/controller/ComputeResultController.java
+/media/chabonardi/Elements/LINUX/BACK-UPS/09.12.2019/Documents/Java/workspace-sts/quick-poll/src/main/java/com/apress/repository/VoteRepository.java

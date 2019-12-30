@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: andre
+Build-Jdk: 11
+Implementation-Title: quick-poll
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.apress
+Implementation-Vendor: Pivotal Software, Inc.
+Main-Class: com.apress.QuickPollApplication
+Created-By: Maven Integration for Eclipse
+
