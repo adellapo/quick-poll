@@ -1,0 +1,66 @@
+Capitulo 5 - Manejo de errores
+------------------------------
+
+// Manejo de errores
+
+Suponiendo que hay 2 polls, /polls/1 y /polls/2 y mandamos un GET al backend con /poll/100 obtendremos un HTPP 200 (ok) y un null en el navegador, en vez de un 404 (not found). Esto es porque no hay manejo de errores.
+
+Para este caso vamos a querer que el metodo que maneja las peticiones GET nos verifique si existe o no la poll solicitada y que en caso de no existir que arroje un "ResourceNotFound" y para esto creamos la clase ResourcenNotFoundException dentro del nuevo paquete "exception".
+
+La clase ResourceNotFoundException es un clase es una clase de excepcion personalizada.
+
+La anotacion @ResponseStatus es declarada a nivel clase. Sirve para mandar una respuesta HTTP, en este caso usamos HttpStatus.NOT_FOUND para devolver un 404.
+
+En el controlador creamos un objeto Poll p que es llamado mediante el repositorio con el metodo findOne/findById (depende la version de Maven usada) pasando el id como parametro. Con esto obtenemos una instancia de Poll, si es null significa que no existe una poll para dicho id, en ese caso arrojamos una ResourceNotFoundException para devolver un HTTP 404, pasando un mensaje en el constructor.
+
+Como solo se regulo el GET, agregamos un metodo nuevo verifyPoll(Long pollId) para que verifique si la Poll solicitada existe y que en todo caso arroje la ResourceNotFoundException. Este metodo lo usamos en todas las metodos del controlador donde se solicite una Poll pasando el id como parametro.
+
+
+// Respuestas de error
+Proveer detalles especificos y de ayuda es una buena practica en el manejo de errores. Spring Boot sigue esta practica e incluye estos detalles en el cuerpo de las respuestas de error:
+
+	- timestamp: tiempo en milisegundos
+	- status: el codigo de estado HTTP asociado al error
+	- error: descripcion asociada al codigo de error
+	- exception: la ruta a la clase de excepcion
+	- message: mensaje sobre el error
+	- path: la URI que resulto en el error
+	
+No hay un formato estandar para las respuestas de error. Este problema se encuentra descripto en "Problem Details for HTTP APIs", link http://tools.ietf.org/html/draft-nottingham-http-problem-06.
+
+A partir del articulo "Problem Details for HTTP APIs" definimos el formato: 
+
+	{
+		"title" : "", 
+		"status" : "", 
+		"detail" : ", 
+		"timestamp" : "", 
+		"developerMessage: "", 
+		"errors": {}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

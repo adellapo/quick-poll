@@ -27,7 +27,11 @@ public class VoteController {
 		
 		// Set the headers for the newly created resource
 		HttpHeaders responseHeaders = new HttpHeaders();
-		responseHeaders.setLocation(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(vote.getId()).toUri());
+		responseHeaders.setLocation(ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(vote.getId())
+				.toUri());
 		
 		return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
 	}
