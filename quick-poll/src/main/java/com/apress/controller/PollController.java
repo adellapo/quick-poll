@@ -24,6 +24,8 @@ public class PollController {
 	
 	@RequestMapping(value="/polls", method=RequestMethod.POST)
 	public ResponseEntity<?> createPoll(@RequestBody Poll poll) {
+		
+		// recibo el elemento Poll mediante la variable poll y lo guardo 
 		poll = pollRepository.save(poll);
 		
 		// Set the location header for the newly created resource
