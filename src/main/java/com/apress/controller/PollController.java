@@ -57,7 +57,6 @@ public class PollController {
 		// representa todas las entidades encuestas
 		// encontradas por el repositorio
 		return new ResponseEntity<>(allPolls, HttpStatus.OK);
-
 	}
 
 	// obtengo una Encuesta a partir de su id
@@ -66,12 +65,12 @@ public class PollController {
 
 		// instancio una entidad Encuesta consultando al repositorio
 		Poll p = pollRepository.findOne(pollId);
-
+		
 		// envio una respuesta 200 (OK) pasando pasandole la entidad Encuesta encontrada
 		return new ResponseEntity<>(p, HttpStatus.OK);
 	}
 
-	// actualizo la Encuesta a partir de un id
+	// actualizo una Encuesta mandando todo el objeto Poll
 	@RequestMapping(value = "/polls/{pollId}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updatePoll(@RequestBody Poll poll, @PathVariable Long pollId) {
 
@@ -80,7 +79,6 @@ public class PollController {
 
 		// envio respuesta 200 (OK)
 		return new ResponseEntity<>(HttpStatus.OK);
-
 	}
 
 	// borro una Encuesta a partir de su id
@@ -93,7 +91,31 @@ public class PollController {
 		// envio respuesta 200 (OK)
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-
+	
+	// actualizo una Encuesta con PATCH ==> solo mandando el campo a actualizar con Patch
+	@RequestMapping(value = "/polls/{pollId}", method = RequestMethod.PATCH)
+	public ResponseEntity<?> updateWithPatch(@PathVariable Long pollId, @RequestBody PatchRequest patch){
+		
+		// obtengo la encuesta por el id en el pathvariable
+		Poll poll = pollRepository.findOne(pollId);
+		
+		// si es null, no se encontró. Si se encontró
+		if(poll!=null) {
+			if(patch.getReplace().equals("question")) {
+				poll.setQuestion(patch.getValue());
+			}
+			else if(patch.getReplace().equals("name")) {
+				poll.setName(patch.getValue());
+			}
+			else {
+				return new ResponseEntity<>("No se encontró la encuesta", HttpStatus.NOT_FOUND);
+			}
+		}
+		pollRepository.save(poll);
+		
+		return new ResponseEntity<>(poll, HttpStatus.OK);
+	}
+	
 }
 
 //------------------------------------------------------------------------------------
