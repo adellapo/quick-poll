@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.apress.domain.Poll;
+import com.apress.exception.ResourceNotFoundException;
 import com.apress.repository.PollRepository;
 
 @RestController
@@ -62,7 +63,10 @@ public class PollController {
 	// obtengo una Encuesta a partir de su id
 	@RequestMapping(value = "/polls/{pollId}", method = RequestMethod.GET)
 	public ResponseEntity<?> getPoll(@PathVariable Long pollId) {
-
+		
+		// verifico si existe la encuesta
+		verifyPollId(pollId);
+		
 		// instancio una entidad Encuesta consultando al repositorio
 		Poll p = pollRepository.findOne(pollId);
 		
@@ -74,6 +78,9 @@ public class PollController {
 	@RequestMapping(value = "/polls/{pollId}", method = RequestMethod.PUT)
 	public ResponseEntity<?> updatePoll(@RequestBody Poll poll, @PathVariable Long pollId) {
 
+		// verifico si existe la encuesta
+		verifyPollId(pollId);
+		
 		// guardo la Encuesta en el repositorio
 		pollRepository.save(poll);
 
@@ -85,6 +92,9 @@ public class PollController {
 	@RequestMapping(value = "/polls/{pollId}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deletePoll(@PathVariable Long pollId) {
 
+		// verifico si existe la encuesta
+		verifyPollId(pollId);
+		
 		// borro la Encuesta del repositorio
 		pollRepository.delete(pollId);
 
@@ -95,6 +105,9 @@ public class PollController {
 	// actualizo una Encuesta con PATCH ==> solo mandando el campo a actualizar con Patch
 	@RequestMapping(value = "/polls/{pollId}", method = RequestMethod.PATCH)
 	public ResponseEntity<?> updateWithPatch(@PathVariable Long pollId, @RequestBody PatchRequest patch){
+
+		// verifico si existe la encuesta
+		verifyPollId(pollId);
 		
 		// obtengo la encuesta por el id en el pathvariable
 		Poll poll = pollRepository.findOne(pollId);
@@ -114,6 +127,17 @@ public class PollController {
 		pollRepository.save(poll);
 		
 		return new ResponseEntity<>(poll, HttpStatus.OK);
+	}
+
+	protected void verifyPollId(Long pollId) throws ResourceNotFoundException {
+
+		Poll poll = pollRepository.findOne(pollId);
+
+		// si no existe la encuesta lanzo error
+		if (poll == null) {
+			throw new ResourceNotFoundException("Poll with id " + pollId + " not found");
+		}
+
 	}
 	
 }
