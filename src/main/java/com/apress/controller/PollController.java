@@ -2,6 +2,8 @@ package com.apress.controller;
 
 import java.net.URI;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,8 +26,9 @@ public class PollController {
 	private PollRepository pollRepository;
 
 	// creo una Encuesta. Con @RequestBody se va estar vinculando el body de la peticion
+	// con @Valid Spring realiza una validacion de datos despues de vincular los datos enviados en el request
 	@RequestMapping(value = "/polls", method = RequestMethod.POST)
-	public ResponseEntity<?> createPoll(@RequestBody Poll poll) {
+	public ResponseEntity<?> createPoll(@Valid @RequestBody Poll poll) {
 
 		// recibo el elemento Poll mediante la variable poll y lo guardo
 		poll = pollRepository.save(poll);

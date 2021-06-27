@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Poll {
@@ -23,11 +26,13 @@ public class Poll {
 	private String name;
 
 	@Column(name = "QUESTION")
+	@NotEmpty								// valida que el bean no tenga una question vacia
 	private String question;
 
 	@OneToMany(cascade = CascadeType.ALL)	// una instancia Poll va tener cero o muchas instancias Option
 	@JoinColumn(name = "POLL_ID")			// la columna con la que se hace el join
 	@OrderBy(value = "value")				// para que se ordene por value ==> Option.value
+	@Size(min = 2, max = 6)					// validacion del bean con un minimo de 2 y maximo 6 opciones
 	private Set<Option> options;
 
 	public Long getId() {
