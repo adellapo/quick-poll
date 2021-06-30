@@ -70,7 +70,7 @@ public class RestExceptionHandler {
 			}
 			ValidationError validationError = new ValidationError();
 			validationError.setCode(fe.getCode());
-			validationError.setMessage(fe.getDefaultMessage());
+			validationError.setMessage(fe.getField() + " " + fe.getDefaultMessage());
 			validationErrorList.add(validationError);
 		}
 		return new ResponseEntity<>(errorDetail, HttpStatus.BAD_REQUEST);

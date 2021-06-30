@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -23,6 +24,8 @@ public class Poll {
 	private Long id;
 
 	@Column(name = "POLL_NAME")
+	@NotEmpty
+	@NotBlank
 	private String name;
 
 	@Column(name = "QUESTION")
